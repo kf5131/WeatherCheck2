@@ -1,14 +1,20 @@
 import sys
 import requests
+import streamlit as st
 
 def get_api_key():
     return st.secrets["API_KEY"]
 
 def get_api_url():
-    api_url = st.secrets['WEATHER_API_URL']
-    if not api_url:
-        raise ValueError("WEATHER_API_URL environment variable is not set")
-    return api_url
+    try:
+        api_url = st.secrets["WEATHER_API_URL"]
+        if not api_url:
+            raise ValueError("WEATHER_API_URL is empty")
+        return api_url
+    except Exception as e:
+        st.error(f"Error accessing secrets: {e}")
+        st.write("Available secrets:", st.secrets.to_dict())  # Debug info
+        return "http://api.openweathermap.org/data/2.5/weather"  # Fallback URL
 
 def get_api_params(city):
     return {
