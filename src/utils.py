@@ -1,15 +1,11 @@
-import os
 import sys
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def get_api_key():
-    return os.getenv("API_KEY")
+    return st.secrets["API_KEY"]
 
 def get_api_url():
-    api_url = os.getenv('WEATHER_API_URL')
+    api_url = st.secrets['WEATHER_API_URL']
     if not api_url:
         raise ValueError("WEATHER_API_URL environment variable is not set")
     return api_url
