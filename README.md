@@ -29,5 +29,5 @@ example for Tokyo:
    ```
 
 2. Enter the location you want to get the weather for
-3. See the current weather and forecast
+3. See the current weather and map
 
